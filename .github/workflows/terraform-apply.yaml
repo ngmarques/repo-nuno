@@ -1,0 +1,41 @@
+name: "Terraform - Apply"
+on: workflow_dispatch
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  Terraform-CD:
+    runs-on: ubuntu-latest
+    name: Terraform Apply
+    steps:
+      - name: checkout
+        id: checkout_code
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: 'Authenticate to Google Cloud'
+        id: auth
+        uses: 'google-github-actions/auth@v0.4.0'
+        with:
+          credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+        # id: auth-dev
+        # uses: google-github-actions/auth@v1
+        # with:
+        #   token_format: "access_token"
+        #   create_credentials_file: true
+        #   workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_POOL }}
+        #   service_account: ${{ secrets.SA_EMAIL }}
+        #   access_token_lifetime: "900s" # 15 minutes
+
+      - name: Terraform Init
+        run: terraform init
+
+      # - name: Terraform plan
+      #   run: terraform plan
+
+      # - name: Terraform Apply
+      #   run: terraform apply --auto-approve 
