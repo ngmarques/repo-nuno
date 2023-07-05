@@ -30,7 +30,7 @@ jobs:
         run: terraform init
 
       - name: Terraform plan
-        run: terraform plan -var="credentials=${{ secrets.SA_KEY }}"
+        run: terraform plan -var="credentials=YYYYYY"
 
       - name: Terraform Apply
         run: terraform apply -var="credentials=${{ secrets.SA_KEY }}" --auto-approve
