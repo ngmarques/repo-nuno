@@ -9,5 +9,6 @@ terraform {
 }
 
 provider "google" {
+    credentials = var.credentials
     region = var.region
 }
