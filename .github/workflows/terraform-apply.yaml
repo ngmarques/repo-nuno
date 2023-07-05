@@ -18,8 +18,10 @@ jobs:
         uses: hashicorp/setup-terraform@v2
 
       - name: 'Authenticate to Google Cloud'
-        run: echo '${{ secrets.SA_KEY }}' >> sakey.json; cat sakey.json
-        #run: gcloud auth activate-service-account ${{ vars.SA_EMAIL }} --key-file= ${{ secrets.SA_KEY }}
+        run: |
+          echo '${{ secrets.SA_KEY }}' >> sakey.json
+          cat sakey.json; 
+          gcloud auth activate-service-account ${{ vars.SA_EMAIL }} --key-file= sakey.json
         # id: auth
         # uses: 'google-github-actions/auth@v0.4.0'
         # with:
