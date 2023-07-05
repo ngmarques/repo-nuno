@@ -19,9 +19,8 @@ jobs:
 
       - name: 'Authenticate to Google Cloud'
         run: |
-          echo '${{ secrets.SA_KEY }}' >> sakey.json
-          cat sakey.json; 
-          gcloud auth activate-service-account ${{ vars.SA_EMAIL }} --key-file=${{ secrets.SA_KEY }}
+          echo '${{ secrets.SA_KEY }}' >> sa_key.json
+          gcloud auth activate-service-account ${{ vars.SA_EMAIL }} --key-file=./sa_key.json
         # id: auth
         # uses: 'google-github-actions/auth@v0.4.0'
         # with:
