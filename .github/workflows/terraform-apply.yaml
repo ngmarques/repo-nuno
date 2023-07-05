@@ -26,11 +26,11 @@ jobs:
         # with:
         #   credentials_json: '${{ secrets.SA_KEY }}'
 
-      # - name: Terraform Init
-      #   run: terraform init
+      - name: Terraform Init
+        run: terraform init
 
-      # - name: Terraform plan
-      #   run: terraform plan
+      - name: Terraform plan
+        run: terraform plan
 
-      # - name: Terraform Apply
-      #   run: terraform apply --auto-approve
+      - name: Terraform Apply
+        run: terraform apply --auto-approve
