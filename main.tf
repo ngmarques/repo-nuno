@@ -14,5 +14,5 @@ resource "google_storage_bucket_iam_binding" "binding" {
     
     bucket = google_storage_bucket.bucketnuno.name
     role = "roles/owner"
-    members = "serviceAccount:${data.google_service_account.service_account.email}"
+    member = "serviceAccount:${data.google_service_account.service_account.email}"
 }
