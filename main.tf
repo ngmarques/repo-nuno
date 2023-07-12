@@ -3,6 +3,7 @@
 #     for files in fileset(path.module, "/files_to_bucket/*"):
 #   }
 # }
+#
 
 data "google_storage_bucket" "bucket" {
   name = "testebucketnuno"
