@@ -1,18 +1,18 @@
-resource "google_storage_bucket" "bucketnuno" {
-  project = var.project_id
-  name          = "testebucketnuno"
-  location      = "EU"
+# locals {
+#   files = {
+#     for files in fileset(path.module, "/files_to_bucket/*"):
+#   }
+# }
 
-  uniform_bucket_level_access = true
+data "google_storage_bucket" "bucket" {
+  name = "testebucketnuno"
 }
 
-data "google_service_account" "service_account" {
-  account_id = var.account_id 
-}
+resource "google_storage_bucket_object" "files_to_bucket" {
 
-resource "google_storage_bucket_iam_binding" "binding" {
-    
-    bucket = google_storage_bucket.bucketnuno.name
-    role = "roles/owner"
-    member = "serviceAccount:${data.google_service_account.service_account.email}"
+    for_each = fileset(path.module, "/files_to_bucket/*")
+  
+  name   = each.value
+  source = each.value
+  bucket = data.google_storage_bucket.bucket.name
 }
