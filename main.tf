@@ -10,3 +10,5 @@ resource "google_storage_bucket_object" "files_to_bucket" {
   source = each.value
   bucket = data.google_storage_bucket.bucket.name
 }
+
+#
